@@ -5,6 +5,10 @@ try {
 } catch (e) {
     console.log(e)
 }
+window._ = require('lodash');
+
 window.$ =window.jQuery =require('jquery');
 
-$('body').prepend('<a href="#">Link</a>');
+window.axios = require('axios');
+
+window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';

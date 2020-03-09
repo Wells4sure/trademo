@@ -1,0 +1,16 @@
+{
+    "name": "wells/trademo",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Wellington",
+            "email": "iamwchanda@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "require": {}
+}

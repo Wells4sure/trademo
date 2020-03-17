@@ -1,3 +1,8 @@
+ErrorDocument 403 '<h2>FORBIDDEN ACCESS</h2>'
+ErrorDocument 404 '<h2>WHOA! YOU ARE LOST</h2>'
+ErrorDocument 500 '<h2>SORRY! SYSTEM BUSY </h2>'
+
+
 RewriteEngine on
 
 RewriteCond %{REQUEST_FILENAME} !-d
@@ -5,3 +10,4 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}\.php -f 
 
 RewriteRule ^([a-z]+)\/?$ $1.php [NC]
+

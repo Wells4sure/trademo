@@ -1,9 +1,8 @@
 <template>
-   <v-app id="inspire">
          <v-content>
                 <v-container class="fill-height"  fluid >
                     <v-row  align="center"   justify="center">
-                        <v-col  cols="12" sm="8"  md="6">
+                        <v-col  cols="12" sm="8"  md="5">
                       
                                <v-alert
                                   v-model="alert"
@@ -24,10 +23,8 @@
                            <v-card class="elevation-5">
                       
                                <v-row class="my-row">
-                               <v-col cols="6" sm="12"  md="6" class="left-side">
-                                
-                           
-                                
+                               <v-col cols="12"  class="left-side">
+                              
                                 <v-card-text>
                                     <h3>Login</h3>
                                     Sign In to your account
@@ -67,11 +64,7 @@
                                     </v-card-actions>
                                 </v-card-text>
                                 </v-col>
-                                 <v-col cols="6" sm="12"  md="6" class="text-center right-side">
-                                    <v-card-title > Sign up</v-card-title>
-                                    <v-card-text>Create your account and see you sales grow in an instant</v-card-text>
-                                    <a href="register.php" class="link-btn"><v-btn large color="success">Register Now!</v-btn></a>
-                                </v-col>
+                   
 
                                 </v-row> 
                            </v-card>
@@ -79,7 +72,7 @@
                     </v-row>
                 </v-container>
          </v-content>
-   </v-app>
+
 </template>
 <script>
 import Errors from '../class/Errors.js';
@@ -89,7 +82,7 @@ export default {
   data() {
         return {
            submitStatus: null,
-            email: '',
+            email: 'test@test.com',
             password:'',
             errorMessages: '',
             validationErrors: '',
@@ -97,7 +90,7 @@ export default {
             alert: true,
         }
     },
-      computed: {
+    computed: {
     form () {
       return {
         email: this.email,
@@ -120,11 +113,14 @@ export default {
            // do your submit logic here
           this.submitStatus = 'PENDING'
           let data = new FormData();
+          data.append('login', 1);
           data.append('email', this.email);
           data.append('password', this.password);
-          axios.post('/login', data)
+          axios.post('app/controller/auth/login.php', data)
              .then(response => {
-                 window.location.assign('/home');
+               console.log(response);
+                this.submitStatus = null
+                //  window.location.assign('home');
              }).catch(error => {
                
                this.submitStatus = null
@@ -165,11 +161,7 @@ export default {
     margin-right: 0px;
     border-radius: .25rem;
 }
-.right-side{
-    text-align: center;
-    color: #fff;
-    background: #20A8D8;
-}
+
 .left-side{
     background: #3A4149;
     color: #fff;

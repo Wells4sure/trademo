@@ -4,6 +4,7 @@ window.Vue = require('vue');
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import Vuetify from 'vuetify';
 import 'vuetify/dist/vuetify.min.css';
+import '@mdi/font/css/materialdesignicons.css';// Ensure you are using css-loader
 import Vuelidate from 'vuelidate';
 
 Vue.use(Vuelidate);
@@ -11,7 +12,8 @@ Vue.use(Vuetify);
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 
-Vue.component('home', require('./components/LoginForm.vue').default);
+Vue.component('login', require('./components/LoginForm.vue').default);
+Vue.component('install', require('./components/Install.vue').default);
 
 
 const app = new Vue({

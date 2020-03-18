@@ -4,7 +4,6 @@ window.Vue = require('vue');
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import Vuetify from 'vuetify';
 import 'vuetify/dist/vuetify.min.css';
-import '@mdi/font/css/materialdesignicons.css';// Ensure you are using css-loader
 import Vuelidate from 'vuelidate';
 
 Vue.use(Vuelidate);

@@ -2,7 +2,7 @@
     <v-content>
         <v-container class="fill-height"  fluid >
              <v-row  align="center"   justify="center">
-                    <v-col  cols="12" sm="8"  md="5">
+                    <v-col  cols="12" sm="8"  md="4">
                          <v-card class="elevation-5">
                             <v-row class="my-row">
                                <v-col cols="12"  class="left-side">
@@ -20,18 +20,21 @@
                                         <strong>Whoops! </strong> {{ validationErrors}}
                                         
                                         </v-alert>
-
-                                        <h3>Installing...</h3>
-                                        <p>Wait a minute we setup your system</p>
-                                        
-                                            <v-progress-linear
-                                                color="blue accent-4"
-                                                indeterminate
-                                                rounded
-                                                height="6"
-                                            ></v-progress-linear>
-                                       <v-card-text>Create Your Free account by filling the form below to register.</v-card-text>
-                                    <v-form  @keyup.native.enter="submit($event)" >
+                                      <v-col cols="12"  v-if="!inst"  >
+                                          <h3>Installing...</h3>
+                                          <p>Wait a minute we setup your system</p>
+                                          
+                                              <v-progress-linear
+                                                  color="blue accent-4"
+                                                  indeterminate
+                                                  rounded
+                                                  height="6"
+                                              ></v-progress-linear>
+                                      
+                                      </v-col>
+                                      <v-form  @keyup.native.enter="submit($event)" v-else>
+                                         <h3>Quick Setup</h3>
+                                        <v-card-text>Create Your Free account by filling the form below to register.</v-card-text>
                                          <v-text-field                                        
                                             v-model="$v.email.$model"
                                             label="Email address"  
@@ -40,7 +43,7 @@
                                             type="text" 
                                             clearable                                          
                                             dark
-                                            color="indigo darken-4"                                        
+                                            color="blue"                                        
                                             :error-messages="$v.email.$dirty && !$v.email.required ? ['This field is required'] : !$v.email.email ? ['Must be a valid email'] :  []">
                                          </v-text-field>
                                         <v-text-field  
@@ -52,8 +55,8 @@
                                         prepend-icon="mdi-lock" 
                                         type="password"                                       
                                         dark
-                                        color="indigo darken-4"  
-                                        :error-messages="$v.password.$dirty && !$v.password.required ? ['This field is required'] :!$v.password.minLength ? ['Password must have at least 8 letters.'] : []"
+                                        color="blue"  
+                                        :error-messages="$v.password.$dirty && !$v.password.required ? ['This field is required'] :!$v.password.minLength ? ['Password must have at least 6 letters.'] : []"
                                         clearable ></v-text-field>
                                         <v-text-field                                         
                                           v-model="$v.business.$model" 
@@ -63,26 +66,11 @@
                                           label="Business Name"  
                                           prepend-icon="mdi-office-building"                                         
                                           dark
-                                          color="indigo darken-4"  
+                                          color="blue"  
                                           clearable
                                           required
                                         ></v-text-field>
-                                        <v-autocomplete                                         
-                                          v-model="$v.country.$model"                                        
-                                          :items="countries"
-                                          :error-messages="$v.country.$dirty && !$v.country.required ? ['This field is required'] :[]"
-                                          label="Country"
-                                          id="Country"  
-                                          name="country"  
-                                          prepend-icon="mdi-earth"
-                                          dark
-                                          clearable  
-                                          required
-                                          item-text="name"
-                                          item-value="id"
-                                          color="indigo darken-4"  
-                                          return-object
-                                        ></v-autocomplete>
+                      
                                          <v-checkbox
                                           v-model="$v.terms.$model"                                                                        
                                           :error-messages="$v.terms.$dirty && !$v.terms.required ? ['This field is required'] :[]"
@@ -91,45 +79,53 @@
                                         >
                                         <template v-slot:label>
                                             <div>
-                                              I understand and agree to Opoint
+                                              I understand and agree to Trademo
                                               <v-tooltip bottom>
                                                 <template v-slot:activator="{ on }">
                                                   <a
                                                     target="_blank"
-                                                    href="/termsofuse"
+                                                    href="termsofuse"
                                                     @click.stop
                                                     v-on="on"
                                                     class="linktext"
+                                                     color="blue lighten-4"    
                                                   >
                                                     Term of Use
                                                   </a>
                                                 </template>
-                                                See Terms of use
+                                                Read our Terms of use
                                               </v-tooltip>
                                              and 
                                               <v-tooltip bottom>
                                                 <template v-slot:activator="{ on }">
                                                   <a
                                                     target="_blank"
-                                                    href="/termsofuse"
+                                                    href="termsofuse"
                                                     @click.stop
                                                     v-on="on"
                                                     class="linktext"
+                                                     color="blue lighten-4"  
                                                   >
                                                     Privacy Policy
                                                   </a>
                                                 </template>
-                                                See Privacy Policy
+                                                Read our Privacy Policy
                                               </v-tooltip>
                                             </div>
                                           </template>
                                         </v-checkbox>
                                     </v-form>
                                     <v-btn large color="success"  :disabled="submitStatus === 'PENDING' || terms ===false" @click="submit" block>Sign up</v-btn>
-                                    <p class="typo__p" v-if="submitStatus === 'OK'">Thanks for your submission!</p>
-                                    <p class="typo__p" v-if="submitStatus === 'ERROR'">Please fill the form correctly.</p>
-                                    <p class="typo__p" v-if="submitStatus === 'PENDING'">Sending...</p>
-                                      <a href="/login" class="link-btn" ><v-btn text dark class="mt-5"> Already have an account? Sign in </v-btn></a>
+                                         
+       
+                                      <v-col cols="12" v-if="submitStatus === 'PENDING'">
+                                      <v-progress-linear
+                                        color="green accent-4"
+                                        indeterminate
+                                        rounded
+                                        height="6"
+                                      ></v-progress-linear>
+                                    </v-col>
                                     </v-card-text>
 
                                </v-col>
@@ -145,10 +141,11 @@ import Errors from '../class/Errors.js';
 import { required, minLength, email } from 'vuelidate/lib/validators'
 export default {
     name:'install',
-    props:['countries'],
+  
   data() {
     return {
         alert: true,
+        inst: false,
         submitStatus: null,
         terms: false,
         email: '',
@@ -157,7 +154,54 @@ export default {
         country:'',
         login_error: new Errors(),
         validationErrors:'',
-        errorMessages: '',
+      
+    }
+  },
+  mounted(){
+      axios.get('app/controller/installer/setup.php')  
+      .then(res => {
+        if(res.data.error==false){
+          this.inst=true;
+        }
+      })
+  },
+
+  methods:{
+    submit(){
+       this.$v.$touch()
+      if (this.$v.$invalid) {
+          this.submitStatus = 'ERROR'
+          this.validationErrors="Please fill the form correctly"
+        }else{
+        // do your submit logic here
+          this.submitStatus = 'PENDING'
+          if(this.terms){
+             let data = new FormData();
+
+              data.append('email', this.email);
+              data.append('password', this.password);
+              data.append('business', this.business);
+              data.append('role', 'owner');
+
+             axios.post('app/controller/auth/register.php', data)
+             .then(response => {
+                this.submitStatus = 'OK'
+                //  window.location.assign('home');
+             }).catch(error => {
+                
+               this.login_error.record(error.response.data.errors)
+               if (this.login_error.any()) {
+                    Object.keys(this.login_error.errors).forEach(error => {
+
+                      this.validationErrors=this.login_error.errors[error][0];
+                      
+                    });
+                }
+                this.submitStatus = null
+             })
+           
+          }
+        }
     }
   },
   validations: {
@@ -167,12 +211,9 @@ export default {
       },
       password: {
       required,
-      minLength: minLength(8)
+      minLength: minLength(6)
     },
       business: {
-      required,
-    },
-      country: {
       required,
     },
       terms: {
@@ -181,17 +222,39 @@ export default {
   }
 }
 </script>
-<style scoped>
-.container.fill-height {
-    background: #2F353A;
+<style lang="scss" scoped>
+.btn-link:hover {
+    color: rgb(22, 116, 149);
+    background-color: transparent;
 }
-.link-btn{
-    text-decoration: none;
+.my-text-style input {
+    color: red !important;
+  }
+.my-row{
+    margin-left: 0px;
+    margin-right: 0px;
+    border-radius: .25rem;
+}
+.right-side{
+    text-align: center;
+    color: #fff;
+    background: #20A8D8;
+
 }
 .left-side{
     background: #3A4149;
     color: #fff;
     border: 1px solid #23282c;
     
+}
+.container.fill-height {
+    background: #2F353A;
+}
+.link-btn{
+    text-decoration: none;
+}
+
+.typo__p{
+  color: red;
 }
 </style>

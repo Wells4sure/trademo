@@ -6,6 +6,7 @@
     <title>Trademo</title>
     <!-- Style sheet -->
     <link rel="stylesheet" href="public/css/app.css">
+    <link href="node_modules/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet">
 </head>
 <body>
     <div id="app">

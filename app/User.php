@@ -1,7 +1,6 @@
 <?php 
+session_start();
 include_once('../../../config/Database.php');
-
-
 class User extends Database {
 
   public function __construct(){

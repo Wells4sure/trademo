@@ -25,7 +25,9 @@
                 $response['error'] = true;
                 $response['message'] = 'Invalid email or password';
             }else{
-               
+               //Set Session
+                $_SESSION["user"] = $auth;
+                
                 $response['error'] = false;
                 $response['message'] = 'User Authenticated';
               

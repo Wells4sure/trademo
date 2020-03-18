@@ -182,11 +182,17 @@ export default {
               data.append('password', this.password);
               data.append('business', this.business);
               data.append('role', 'owner');
+              data.append('setup', 1);
 
              axios.post('app/controller/auth/register.php', data)
              .then(response => {
                 this.submitStatus = 'OK'
-                //  window.location.assign('home');
+                if(response.data.error==false){
+                 window.location.assign('index');
+                }else{
+                  this.validationErrors=response.data.message
+                }
+                
              }).catch(error => {
                 
                this.login_error.record(error.response.data.errors)

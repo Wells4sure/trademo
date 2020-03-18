@@ -1,4 +1,5 @@
 <?php 
+session_start();
 include_once ('../../../helpers/ServiceHelpers.php');
   class Database extends ServiceHelpers {
     // DB Params

@@ -58,7 +58,7 @@
                                      </v-form>
                                     <v-card-actions class="text-center">
                                         <v-btn large color="#20A8D8" class="white--text" :disabled="submitStatus === 'PENDING'" @click="submit" >Login</v-btn>
-                                    
+                                    <v-spacer></v-spacer>
                                         <v-btn text dark large aling-right> Forgot password? </v-btn>
                                      
                                     </v-card-actions>
@@ -120,7 +120,13 @@ export default {
              .then(response => {
                console.log(response);
                 this.submitStatus = null
-                //  window.location.assign('home');
+                if(response.data.error ==false){
+
+                  window.location.assign('home');
+                }else{
+                   this.validationErrors=response.data.message
+                }
+
              }).catch(error => {
                
                this.submitStatus = null

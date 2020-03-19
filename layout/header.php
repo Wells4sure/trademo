@@ -1,5 +1,9 @@
 <?php
-    require_once 'layout/partial/session.php';
+    include 'config/Autoloader.php';
+    
+    $user = new app\controller\Session;
+
+    echo $user->user();
 ?>
 <!DOCTYPE html>
 <html lang="en">

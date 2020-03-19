@@ -1,14 +1,14 @@
 <?php
 
-namespace app\controller;
+namespace App;
 
-use config\Database;
+use Config\Database ;
 
-class Session{
+class Session extends Database{
 
     public function __construct(){
  
-        Database::__construct();
+        parent::__construct();
     }
 
     public function check(){

@@ -1,4 +1,5 @@
 <?php
+namespace Helpers;
 class ServiceHelpers {
 
     public function checkInputs($data){

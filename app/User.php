@@ -1,4 +1,5 @@
 <?php 
+namespace App;
 
 include_once('../../../config/Database.php');
 class User extends Database {

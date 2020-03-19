@@ -1,9 +1,9 @@
 <?php 
-namespace config;
+namespace Config;
+use Helpers\ServiceHelpers;
+
 session_start();
 
-
-include_once ('../../../helpers/ServiceHelpers.php');
   class Database extends ServiceHelpers {
     // DB Params
     private $host = 'localhost';
@@ -18,9 +18,9 @@ include_once ('../../../helpers/ServiceHelpers.php');
       $this->conn = null;
 
       try { 
-        $this->conn = new PDO('mysql:host=' . $this->host . ';dbname=' . $this->db_name, $this->username, $this->password);
-        $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      } catch(PDOException $e) {
+        $this->conn = new \PDO('mysql:host=' . $this->host . ';dbname=' . $this->db_name, $this->username, $this->password);
+        $this->conn->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+      } catch(\PDOException $e) {
         echo 'Connection Error: ' . $e->getMessage();
     
       }

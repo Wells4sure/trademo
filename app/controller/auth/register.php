@@ -2,16 +2,14 @@
 header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json');
 
-include_once '../../User.php';
-include_once '../../Company.php';
-include_once '../../Company_branch.php';
+include '../../../config/Autoloader.php';
 
 $response = array();
 
 // Instantiate  objects
-$user = new User();
-$company = new Company();
-$branch = new Company_branch();
+$user = new App\User();
+$company = new App\Company();
+$branch = new App\Company_branch();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     //set up
@@ -47,6 +45,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
        
             $data =[
+                'first_name'=>'Owner',
+                'last_name'=>'Owner',
                 'email'=>$email,
                 'password'=>$password,
                 'role'=>$role,

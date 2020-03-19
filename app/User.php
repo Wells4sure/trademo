@@ -1,7 +1,7 @@
 <?php 
 namespace App;
 
-include_once('../../../config/Database.php');
+use Config\Database ;
 class User extends Database {
 
   public function __construct(){
@@ -21,7 +21,6 @@ class User extends Database {
     $password=$data['password'];
 
       $first_name=$data['first_name']??'';
-      $last_name=$data['last_name']??'';
       $last_name=$data['last_name']??'';
       $phone=$data['phone']??'';
     
@@ -59,7 +58,7 @@ class User extends Database {
     $result = $this->conn->query($stmt);
     
     if ($result->rowCount() > 0) {
-      if ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+      if ($row = $result->fetch(\PDO::FETCH_ASSOC)) {
 
         $hushedPwd = password_verify($password, $row['password']);
         if (!$hushedPwd === false) {

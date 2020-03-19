@@ -1,5 +1,6 @@
 <?php
-include_once('../../../config/Database.php');
+namespace App;
+use Config\Database ;
 class Country  extends Database{
     private $table = 'countries';
 

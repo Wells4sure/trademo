@@ -3,9 +3,9 @@ require_once 'layout/header.php';
 ?>
 <body>
     <div id="app">
-        <v-app>
-            head
-        </v-app>
+       
+            <home/>
+      
     </div>
 </body>
 <?php

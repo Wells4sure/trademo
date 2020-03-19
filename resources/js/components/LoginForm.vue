@@ -62,6 +62,14 @@
                                         <v-btn text dark large aling-right> Forgot password? </v-btn>
                                      
                                     </v-card-actions>
+                                    <v-col cols="12" v-if="submitStatus =='PENDING'">
+                                      <v-progress-linear
+                                        color="blue lighten-1"
+                                        indeterminate
+                                        rounded
+                                        height="6"
+                                      ></v-progress-linear>
+                                    </v-col>
                                 </v-card-text>
                                 </v-col>
                    
@@ -82,7 +90,7 @@ export default {
   data() {
         return {
            submitStatus: null,
-            email: 'test@test.com',
+            email: 'admin@admin.com',
             password:'',
             errorMessages: '',
             validationErrors: '',
@@ -118,14 +126,15 @@ export default {
           data.append('password', this.password);
           axios.post('app/controller/auth/login.php', data)
              .then(response => {
-               console.log(response);
-                this.submitStatus = null
+              
                 if(response.data.error ==false){
 
                   window.location.assign('home');
                 }else{
                    this.validationErrors=response.data.message
+                   this.submitStatus = null
                 }
+                
 
              }).catch(error => {
                

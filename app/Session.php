@@ -14,23 +14,25 @@ class Session extends Database{
     public function check(){
 
         if ((!empty($_SESSION['user']))) {
-           return 'true';
+           return true;
         }
 
-        return 'false';
+        return false;
     }
 
     public function user(){
-
+    
         if ((!empty($_SESSION['user']))) {
             $user=$_SESSION['user'];
 
-            $sql = "SELECT * FROM users WHERE id='$user' ";
+            $sql = "SELECT * FROM users WHERE id='$user'  LIMIT 1";
+
             $result= $this->conn->query($sql);
             if ($result->rowCount() > 0) {
-                return false;
+                $row = $result->fetch(\PDO::FETCH_ASSOC);
+                return  $row['id'];
             }else{
-                return $result;
+                return false;
             }
         }
     }

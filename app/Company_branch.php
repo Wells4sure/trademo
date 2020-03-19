@@ -1,5 +1,6 @@
 <?php
-include_once('../../../config/Database.php');
+namespace App;
+use Config\Database ;
 class Company_branch extends Database {
 
     public function __construct(){

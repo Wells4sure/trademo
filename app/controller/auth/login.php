@@ -6,12 +6,13 @@
  header('Access-Control-Allow-Methods: POST');
  header('Access-Control-Allow-Headers: Access-Control-Allow-Headers, Content-Type, Access-Control-Allow-Methods, Authorization,X-Requested-With');
  
- include_once '../../User.php';
+ include '../../../config/Autoloader.php';
 
  $response = array();
 
     // Instantiate user object
-    $user = new User();
+    $user = new App\User();
+    
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if(isset($_POST['login'])){
 

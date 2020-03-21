@@ -3,9 +3,7 @@ require_once 'layout/header.php';
 ?>
 <body>
     <div id="app">
-       
-            <home/>
-      
+        <home/>
     </div>
 </body>
 <?php

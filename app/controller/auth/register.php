@@ -70,6 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     'company_id'=>$companyCreated, 
                     'name'=>$business  
                     ];
+                    
                     if($branch->create($data)){
                         $response['error'] = false;
                         $response['message'] = 'Merchant Generated';

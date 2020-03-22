@@ -34,7 +34,6 @@ const router = new VueRouter({
 
 Vue.component('login', require('./components/LoginForm.vue').default);
 Vue.component('install', require('./components/Install.vue').default);
-Vue.component('root-comp', require('./components/RootComp.vue').default);
 Vue.component('footer-comp', require('./components/includes/Footer.vue').default);
 Vue.component('navbar-comp', require('./components/includes/Navigation.vue').default);
 Vue.component('home', require('./components/Home.vue').default);

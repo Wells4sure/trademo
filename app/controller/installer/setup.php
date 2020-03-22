@@ -36,14 +36,6 @@ if (!$conn) {
             UNIQUE KEY `users_email_unique` (`email`)
           ) ;";
 
-            $sql.="CREATE TABLE IF NOT EXISTS `categories` (
-                `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-                `name` VARCHAR(255) NOT NULL,
-                `description` VARCHAR(255) NULL,
-                `created_at` timestamp NULL DEFAULT NULL,
-                `updated_at` timestamp NULL DEFAULT NULL,
-                PRIMARY KEY (`id`)
-                );";
 
             $sql.="CREATE TABLE IF NOT EXISTS `companies` (
             `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
@@ -69,6 +61,14 @@ if (!$conn) {
                 PRIMARY KEY (`id`),
                 KEY `companies_company_id_foreign` (`company_id`),
                 CONSTRAINT `companies_company_id_foreign` FOREIGN KEY (`company_id`) REFERENCES `companies` (`id`) ON DELETE CASCADE
+                );";
+            $sql.="CREATE TABLE IF NOT EXISTS `categories` (
+                `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+                `name` VARCHAR(255) NOT NULL,
+                `color` VARCHAR(255) NULL,        
+                `created_at` timestamp NULL DEFAULT NULL,
+                `updated_at` timestamp NULL DEFAULT NULL,
+                PRIMARY KEY (`id`)                
                 );";
             $sql.="CREATE TABLE IF NOT EXISTS `products` (
                 `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,

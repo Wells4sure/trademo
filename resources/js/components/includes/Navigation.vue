@@ -157,7 +157,7 @@
             v-if="primaryDrawer.type !== 'permanent'"
             @click.stop="primaryDrawer.mini = !primaryDrawer.mini"
         />
-        <v-toolbar-title> Monday 12:52.62</v-toolbar-title>
+        <v-toolbar-title> {{todayDate}}</v-toolbar-title>
         </v-app-bar>
 
     </div>
@@ -167,6 +167,7 @@
   export default {
        data () {
       return {
+       todayDate :new Date().toDateString(),
        items: [  
   
         {

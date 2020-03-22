@@ -4,14 +4,15 @@ export default {
     },
     getters: {
         getCategoriesFormGetters(state){ //take parameter state
-            return state.companies
+            return state.categories.data
          },   
     },
     actions: {
         async allCategories(context){
             await  axios.get("app/controller/products/categories.php")
                     .then((res)=>{
-                        context.commit("categories",response.data.categories) //companies will be run from mutation  
+                       
+                        context.commit("categories",res.data) //categories will be run from mutation  
                     })
                     .catch((err)=>{
                         console.log(err)

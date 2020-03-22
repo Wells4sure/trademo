@@ -18,4 +18,5 @@
     <link rel="stylesheet" href="public/css/app.css">
     <link href="node_modules/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet">
     <link href="node_modules/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="public/iziToast-master/dist/css/iziToast.min.css" rel="stylesheet">
 </head>
